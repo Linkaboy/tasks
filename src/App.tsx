@@ -11,6 +11,13 @@ function App(): React.JSX.Element {
                 Edit <code>src/App.tsx</code> and save. This page will
                 automatically reload.{" "}
                 <span style={{ color: "red" }}>Bryce Roy</span>
+                <Button
+                    onClick={() => {
+                        console.log("Hello World!");
+                    }}
+                >
+                    Log Hello World
+                </Button>
             </p>
             Making a list:
             <ul>
@@ -25,10 +32,12 @@ function App(): React.JSX.Element {
                 <li>Option C</li>
             </ol>
             <img
-                src="c:\Users\bryce\OneDrive\Desktop\Umaine Reciepts\Photo.jpg"
+                src="https://t4.ftcdn.net/jpg/07/63/72/23/360_F_763722336_NMoMz3VxW3a5NlezvigHXKMsJPI13GMQ.jpg"
                 alt="Cool Photo"
-                height="640"
-                width="640"
+            />
+            <img
+                src="../assets/images/pet-ada.jpg"
+                alt="A picture of my dog Ada"
             />
         </div>
     );
