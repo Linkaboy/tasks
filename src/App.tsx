@@ -9,8 +9,27 @@ function App(): React.JSX.Element {
             </header>
             <p>
                 Edit <code>src/App.tsx</code> and save. This page will
-                automatically reload. Bryce Roy
+                automatically reload.{" "}
+                <span style={{ color: "red" }}>Bryce Roy</span>
             </p>
+            Making a list:
+            <ul>
+                <li>Option A</li>
+                <li>Option B</li>
+                <li>Option C</li>
+            </ul>
+            Ordering a list:
+            <ol>
+                <li>Option A</li>
+                <li>Option B</li>
+                <li>Option C</li>
+            </ol>
+            <img
+                src="c:\Users\bryce\OneDrive\Desktop\Umaine Reciepts\Photo.jpg"
+                alt="Cool Photo"
+                height="640"
+                width="640"
+            />
         </div>
     );
 }
