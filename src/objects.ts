@@ -165,12 +165,12 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number },
 ): Question {
-    let newQuestion: Question;
+    let newQuestion: Question = contentQuestion;
     newQuestion.body = contentQuestion.body;
     newQuestion.type = contentQuestion.type;
     newQuestion.options = contentQuestion.options;
     newQuestion.expected = contentQuestion.expected;
     newQuestion.points = points;
-    newQuestion.published = "false";
+    newQuestion.published = false;
     return newQuestion;
 }
