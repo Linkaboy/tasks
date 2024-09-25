@@ -53,7 +53,6 @@ export function isValid(question: Question, answer: string): boolean {
     lowercaseAnswer = lowercaseAnswer.trim();
     if (question.type == "short_answer_question") {
         return true;
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     } else if (question.type == "multiple_choice_question") {
         if (lowercaseAnswer in question.options) {
             return true;
@@ -97,8 +96,7 @@ export function toMarkdown(question: Question): string {
     if (question.type == "multiple_choice_question") {
         let spot: number = 0;
         template += question.options.map(
-            (s: string | number) =>
-                "- Option " + (spot + 1) + ": " + question.options[s] + "\n",
+            (s) => "- Option " + (spot + 1) + ": " + question.options[s] + "\n",
         );
     }
     return template;
