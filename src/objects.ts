@@ -10,17 +10,7 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType,
 ): Question {
-    let person = {
-        id: id,
-        name: name,
-        type: type,
-        body: "",
-        expected: "",
-        options: [],
-        points: 1,
-        published: false,
-    };
-    return person;
+    return {};
 }
 
 /**
@@ -31,15 +21,7 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    let lowercaseAnswer: string = answer.toLowerCase();
-    let lowercaseExpected: string = question.expected.toLowerCase();
-    lowercaseAnswer = lowercaseAnswer.trim();
-    lowercaseExpected = lowercaseExpected.trim();
-    if (lowercaseAnswer == lowercaseExpected) {
-        return true;
-    } else {
-        return false;
-    }
+    return false;
 }
 
 /**
@@ -49,18 +31,6 @@ export function isCorrect(question: Question, answer: string): boolean {
  * be exactly one of the options.
  */
 export function isValid(question: Question, answer: string): boolean {
-    let lowercaseAnswer: string = answer.toLowerCase();
-    lowercaseAnswer = lowercaseAnswer.trim();
-    if (question.type == "short_answer_question") {
-        return true;
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    } else if (question.type == "multiple_choice_question") {
-        if (lowercaseAnswer in question.options) {
-            return true;
-        }
-    } else {
-        return false;
-    }
     return false;
 }
 
@@ -71,8 +41,7 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    let shortForm: string = question.id + ": " + question.name.slice(0, 10);
-    return shortForm;
+    return "";
 }
 
 /**
@@ -93,15 +62,7 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    let template: string = "# " + question.name + "\n" + question.body + "\n";
-    if (question.type == "multiple_choice_question") {
-        let spot: number = 0;
-        template += question.options.map(
-            (s: string | number) =>
-                "- Option " + (spot + 1) + ": " + question.options[s] + "\n",
-        );
-    }
-    return template;
+    return "";
 }
 
 /**
@@ -109,7 +70,6 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    question.name = newName;
     return question;
 }
 
@@ -119,11 +79,6 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    if (!question.published) {
-        question.published = true;
-    } else {
-        question.published = false;
-    }
     return question;
 }
 
@@ -134,10 +89,7 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
-    let newQuestion: Question = { oldQuestion };
-    newQuestion.name = "Copy of " + oldQuestion.name;
-    newQuestion.published = false;
-    return newQuestion;
+    return oldQuestion;
 }
 
 /**
@@ -148,9 +100,7 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    let newQuestion: Question = { question };
-    newQuestion.options.add(newOption);
-    return newQuestion;
+    return question;
 }
 
 /**
@@ -167,12 +117,5 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number },
 ): Question {
-    let newQuestion: Question;
-    newQuestion.body = contentQuestion.body;
-    newQuestion.type = contentQuestion.type;
-    newQuestion.options = contentQuestion.options;
-    newQuestion.expected = contentQuestion.expected;
-    newQuestion.points = points;
-    newQuestion.published = "false";
-    return newQuestion;
+    return contentQuestion;
 }
