@@ -93,7 +93,8 @@ export function toMarkdown(question: Question): string {
     if (question.type == "multiple_choice_question") {
         let spot: number = 0;
         template += question.options.map(
-            (str) => "- Option " + (spot + 1) + ": " + str + "\n",
+            (str: string): string =>
+                "- Option " + (spot + 1) + ": " + str + "\n",
             spot++,
         );
     }
