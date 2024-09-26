@@ -53,14 +53,11 @@ export function isValid(question: Question, answer: string): boolean {
     lowercaseAnswer = lowercaseAnswer.trim();
     if (question.type == "short_answer_question") {
         return true;
-    } else if (question.type == "multiple_choice_question") {
-        if (lowercaseAnswer in question.options) {
-            return true;
-        }
+    } else if (lowercaseAnswer in question.options) {
+        return true;
     } else {
         return false;
     }
-    return false;
 }
 
 /**
@@ -96,7 +93,8 @@ export function toMarkdown(question: Question): string {
     if (question.type == "multiple_choice_question") {
         let spot: number = 0;
         template += question.options.map(
-            (s) => "- Option " + (spot + 1) + ": " + question.options[s] + "\n",
+            (str) => "- Option " + (spot + 1) + ": " + str + "\n",
+            spot++,
         );
     }
     return template;
