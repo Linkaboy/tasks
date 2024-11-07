@@ -50,6 +50,7 @@ export function findQuestion(
 /**
  * Consumes an array of questions and returns a new array that does not contain the question
  * with the given `id`.
+ * Hint: use filter
  */
 export function removeQuestion(questions: Question[], id: number): Question[] {
     let removedQuestion: Question[] = questions.filter(
@@ -61,6 +62,7 @@ export function removeQuestion(questions: Question[], id: number): Question[] {
 /***
  * Consumes an array of questions and returns a new array containing just the names of the
  * questions, as an array.
+ * Do not modify the input array.
  */
 export function getNames(questions: Question[]): string[] {
     let names: string[] = questions.map(
@@ -73,23 +75,14 @@ export function getNames(questions: Question[]): string[] {
  * Consumes an array of questions and returns the sum total of all their points added together.
  */
 export function sumPoints(questions: Question[]): number {
-    let sum: number[] = questions.map(
-        (quest: Question): number => quest.points,
-    );
-    let total: number = sum.reduce(
-        (tot: number, current: number) => tot + current,
-        0,
-    );
-    return total;
+    return 0;
 }
 
 /***
  * Consumes an array of questions and returns the sum total of the PUBLISHED questions.
  */
 export function sumPublishedPoints(questions: Question[]): number {
-    let published: Question[] = getPublishedQuestions(questions);
-    let sum = sumPoints(published);
-    return sum;
+    return 0;
 }
 
 /***
@@ -110,21 +103,7 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    let csv: string[] = questions.map(
-        (q: Question): string =>
-            q.id +
-            "," +
-            q.name +
-            "," +
-            q.options.length +
-            "," +
-            q.points +
-            "," +
-            (q.published ? "true" : "false") +
-            "\n",
-    );
-    let singleString: string = csv.toString();
-    return singleString;
+    return "";
 }
 
 /**
@@ -145,6 +124,7 @@ export function makeAnswers(questions: Question[]): Answer[] {
 /***
  * Consumes an array of Questions and produces a new array of questions, where
  * each question is now published, regardless of its previous published status.
+ * Hint: as usual, do not modify the input questions array
  */
 export function publishAll(questions: Question[]): Question[] {
     let allPubbed: Question[] = questions.map((question) => ({
@@ -165,18 +145,14 @@ export function publishAll(questions: Question[]): Question[] {
  * are the same type. They can be any type, as long as they are all the SAME type.
  */
 export function sameType(questions: Question[]): boolean {
-    if (questions.length == 0) {
-        return true;
-    } else {
-        let firstType: string = questions[0].type;
-        return questions.every((question) => question.type == firstType);
-    }
+    return false;
 }
 
 /***
  * Consumes an array of Questions and produces a new array of the same Questions,
  * except that a blank question has been added onto the end. Reuse the `makeBlankQuestion`
  * you defined in the `objects.ts` file.
+ * Hint: as usual, do not modify the input questions array
  */
 export function addNewQuestion(
     questions: Question[],
@@ -193,27 +169,15 @@ export function addNewQuestion(
  * Consumes an array of Questions and produces a new array of Questions, where all
  * the Questions are the same EXCEPT for the one with the given `targetId`. That
  * Question should be the same EXCEPT that its name should now be `newName`.
+ * Hint: as usual, do not modify the input questions array,
+ *       to make a new copy of a question with some changes, use the ... operator
  */
 export function renameQuestionById(
     questions: Question[],
     targetId: number,
     newName: string,
 ): Question[] {
-    let newArray: Question[] = questions.map((quest) =>
-        quest.id == targetId ?
-            {
-                id: quest.id,
-                name: newName,
-                type: quest.type,
-                body: quest.body,
-                expected: quest.expected,
-                options: quest.options,
-                points: quest.points,
-                published: true,
-            }
-        :   quest,
-    );
-    return newArray;
+    return [];
 }
 
 /***
@@ -273,6 +237,8 @@ export function changeQuestionTypeById(
  *
  * Remember, if a function starts getting too complicated, think about how a helper function
  * can make it simpler! Break down complicated tasks into little pieces.
+ *
+ * Hint: you need to use the ... operator for both the question and the options array
  */
 export function editOption(
     questions: Question[],
@@ -280,25 +246,7 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string,
 ): Question[] {
-    function newOptions(
-        question: Question,
-        index: number,
-        option: string,
-    ): Question {
-        let addedQuestion: Question = question;
-        if (index == -1) {
-            addedQuestion.options.push(option);
-        } else {
-            addedQuestion.options[index] = option;
-        }
-        return addedQuestion;
-    }
-    let newQuestionList: Question[] = questions.map((question) =>
-        question.id == targetId ?
-            newOptions(question, targetOptionIndex, newOption)
-        :   question,
-    );
-    return newQuestionList;
+    return [];
 }
 
 /***
